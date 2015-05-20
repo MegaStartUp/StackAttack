@@ -18,6 +18,8 @@ public class Respawn_crane : MonoBehaviour {
 	public GameObject crane_pref;
 	private Crane scripte;
 
+	public bool debug = false;
+
 	// Use this for initialization
 	void Start () {
 	
@@ -36,14 +38,14 @@ public class Respawn_crane : MonoBehaviour {
 				 GameObject crane=Instantiate(crane_pref,new Vector2(left_end,high_crane),Quaternion.identity) as GameObject;
 				 scripte=crane.GetComponent<Crane>();
 				 scripte.forward=true;
-				Debug.Log("С лева");
+				if(debug)Debug.Log("С лева");
 			}
 			else
 			{
 				GameObject crane=Instantiate(crane_pref,new Vector2(right_end,high_crane),Quaternion.identity) as GameObject;
 				 scripte=crane.GetComponent<Crane>();
 				scripte.forward=false;
-				Debug.Log("С права");
+				if(debug)Debug.Log("С права");
 			}
 			scripte.speed=Random.Range(min_speed,max_speed);
 			scripte.unload_point=Random.Range(left_end,right_end);

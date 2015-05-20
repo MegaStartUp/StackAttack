@@ -1,10 +1,14 @@
-﻿using UnityEngine;
+﻿
+using UnityEngine;
 using System.Collections;
+
 
 public class BalanceLoad : MonoBehaviour {
 	public float shift_delay_time=2;
 	private bool player_col=false;
 	private float _shift_delay_time;
+
+	public bool debug = false;
 	
 	void OnCollisionEnter2D(Collision2D col)
 	{
@@ -13,7 +17,7 @@ public class BalanceLoad : MonoBehaviour {
 		{
 			player_col = true;
 			_shift_delay_time=0;
-			Debug.Log("colcolcol"+col.gameObject.name);
+			if(debug)Debug.Log("colcolcol"+col.gameObject.name);
 		}
 	}
 		
@@ -36,7 +40,7 @@ public class BalanceLoad : MonoBehaviour {
 			float _shift=(float)(transform.position.x-0.5)%1;
 			if(_shift>0.5)
 			{
-				Debug.Log("Право");
+				if(debug)Debug.Log("Право");
 				if(1-_shift<Time.deltaTime)
 					transform.Translate(new Vector2(1-_shift,0));
 				else
@@ -45,7 +49,7 @@ public class BalanceLoad : MonoBehaviour {
 			}
 			else
 			{
-				Debug.Log("Лево");
+				if(debug)Debug.Log("Лево");
 				if(_shift<Time.deltaTime)
 					transform.Translate(new Vector2(-_shift,0));
 				else

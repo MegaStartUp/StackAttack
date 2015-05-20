@@ -14,6 +14,8 @@ public class Crane : MonoBehaviour {
 	
 	private bool load = true;
 	private bool corout= true;
+
+	public bool debug = false;
 	
 	// Use this for initialization
 	void Start () {
@@ -69,7 +71,7 @@ public class Crane : MonoBehaviour {
 		corout=false;
 		yield return new WaitForSeconds(wait_time);
 		catch_off();
-		Debug.Log("Unloading");
+		if(debug)Debug.Log("Unloading");
 		yield return new WaitForSeconds(wait_time);
 		corout=true;
 	}

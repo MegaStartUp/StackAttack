@@ -13,7 +13,6 @@ public class RayDestruct : MonoBehaviour {
 	void Update () {
 		RaycastHit2D[] hit_arr = Physics2D.RaycastAll(transform.position,Vector2.right);
 		if (hit_arr.Length != 0) {
-			Debug.Log ("There is something in front of the object!");
 			int destroy_count=0;
 			foreach(RaycastHit2D hit in hit_arr)
 			{
