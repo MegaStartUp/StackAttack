@@ -1,0 +1,8 @@
+#My ignor
+/Library
+/ProjectSettings
+/Temp
+*.csproj
+*.unityproj
+*.sln
+*.userprefs
