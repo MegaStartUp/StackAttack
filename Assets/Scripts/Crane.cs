@@ -14,6 +14,8 @@ public class Crane : MonoBehaviour {
 	
 	private bool load = true;
 	private bool corout= true;
+	
+	public float gravity = 0.5f;
 
 	public bool debug = false;
 	
@@ -60,7 +62,7 @@ public class Crane : MonoBehaviour {
 	void catch_off () {
 
 		GameObject load_obj = transform.Find("Load").gameObject;
-		load_obj.transform.rigidbody2D.gravityScale = 1;
+		load_obj.transform.rigidbody2D.gravityScale = gravity;
 		load_obj.transform.collider2D.enabled = true;
 		BalanceLoad scr = load_obj.GetComponent<BalanceLoad>();
 		scr.enabled = false;
@@ -76,3 +78,4 @@ public class Crane : MonoBehaviour {
 		corout=true;
 	}
 }
+
