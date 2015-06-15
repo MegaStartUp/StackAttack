@@ -5,10 +5,9 @@ public class Player_catch : MonoBehaviour {
 	public bool debag=true;
 	private Vector2 Vect;
 	private RaycastHit2D hit;
-	private Animator anim;
 	// Use this for initialization
 	void Start () {
-		anim = this.GetComponent<Animator> ();
+
 	}
 	
 	// Update is called once per frame
