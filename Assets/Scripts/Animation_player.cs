@@ -3,6 +3,9 @@ using System.Collections;
 
 public class Animation_player : MonoBehaviour {
 	public bool ismove= false;
+	private float mytimer=1.0F;
+	/*private float seconds=0.0F; 
+	private int minutes=0;*/
 	private Animator left;
 	private Animator right;
 	private Animator right_stop;
@@ -19,7 +22,7 @@ public class Animation_player : MonoBehaviour {
 	// Update is called once per frame
 	void Update () {
 		if(!(Input.GetKey (KeyCode.D)&&Input.GetKey (KeyCode.A))){
-																	
+
 																 
 		if (Input.GetKey (KeyCode.D)) {
 						anim.SetBool ("right", true);
@@ -59,5 +62,12 @@ public class Animation_player : MonoBehaviour {
 
 	}
 		}
+		//делаю таймер.
+		if (!(Input.GetKey (KeyCode.D) || Input.GetKey (KeyCode.A)|| Input.GetKey (KeyCode.Space))) {
+													mytimer+=Time.deltaTime;
+													Debug.Log("время:"+mytimer);
+				}
+
 }
+			
 }
