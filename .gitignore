@@ -1,9 +1,7 @@
 #My ignor
-/Library
-/obj
-/ProjectSettings
 /Temp
 *.csproj
 *.unityproj
 *.sln
 *.userprefs
+*.suo
