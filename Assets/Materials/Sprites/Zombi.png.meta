@@ -1,6 +1,30 @@
 fileFormatVersion: 2
 guid: c9dac568c83743b4f9f7a03ed48457d5
 TextureImporter:
+  fileIDToRecycleName:
+    21300000: Zombi_0
+    21300002: Zombi_1
+    21300004: Zombi_2
+    21300006: Zombi_3
+    21300008: Zombi_4
+    21300010: Zombi_5
+    21300012: Zombi_6
+    21300014: Zombi_7
+    21300016: Zombi_8
+    21300018: Zombi_9
+    21300020: Zombi_10
+    21300022: Zombi_11
+    21300024: Zombi_12
+    21300026: Zombi_13
+    21300028: Zombi_14
+    21300030: Zombi_15
+    21300032: Zombi_16
+    21300034: Zombi_17
+    21300036: Zombi_18
+    21300038: Zombi_19
+    21300040: Zombi_20
+    21300042: Zombi_21
+    21300044: Zombi_22
   serializedVersion: 2
   mipmaps:
     mipMapMode: 0
@@ -19,6 +43,9 @@ TextureImporter:
   isReadable: 0
   grayScaleToAlpha: 0
   generateCubemap: 0
+  cubemapConvolution: 0
+  cubemapConvolutionSteps: 8
+  cubemapConvolutionExponent: 1.5
   seamlessCubemap: 0
   textureFormat: -1
   maxTextureSize: 1024
@@ -29,6 +56,7 @@ TextureImporter:
     wrapMode: 1
   nPOTScale: 0
   lightmap: 0
+  rGBM: 0
   compressionQuality: 50
   spriteMode: 2
   spriteExtrude: 1
@@ -274,3 +302,5 @@ TextureImporter:
       border: {x: 0, y: 0, z: 0, w: 0}
   spritePackingTag: 
   userData: 
+  assetBundleName: 
+  assetBundleVariant: 
