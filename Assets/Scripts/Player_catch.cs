@@ -37,12 +37,12 @@ public class Player_catch : MonoBehaviour {
 			hit = Physics2D.Raycast (transform.position, Vect,1,2);
 			if(debag) Debug.Log ("catch"+hit.transform.name);
 						if (hit.transform.name == "Load") {
-								hit.transform.rigidbody2D.isKinematic = true;	
+								hit.transform.GetComponent<Rigidbody2D>().isKinematic = true;	
 								hit.transform.parent = transform;
 						}
 		} else 
 			if (hit.transform.name == "Load") {
-				hit.transform.rigidbody2D.isKinematic = false;	
+				hit.transform.GetComponent<Rigidbody2D>().isKinematic = false;	
 				hit.transform.parent = null;
 			}
 			
