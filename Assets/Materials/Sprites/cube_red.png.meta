@@ -1,0 +1,253 @@
+fileFormatVersion: 2
+guid: d91baf76c173c7743a4d8caf41b142bb
+timeCreated: 1437593480
+licenseType: Free
+TextureImporter:
+  fileIDToRecycleName:
+    21300000: cube_red_0
+    21300002: cube_red_1
+    21300004: cube_red_2
+    21300006: cube_red_3
+    21300008: cube_red_4
+    21300010: cube_red_5
+    21300012: cube_red_6
+    21300014: cube_red_7
+    21300016: cube_red_8
+    21300018: cube_red_9
+    21300020: cube_red_10
+    21300022: cube_red_11
+    21300024: cube_red_12
+    21300026: cube_red_13
+    21300028: cube_red_14
+    21300030: cube_red_15
+    21300032: cube_red_16
+    21300034: cube_red_17
+  serializedVersion: 2
+  mipmaps:
+    mipMapMode: 0
+    enableMipMap: 1
+    linearTexture: 0
+    correctGamma: 0
+    fadeOut: 0
+    borderMipMap: 0
+    mipMapFadeDistanceStart: 1
+    mipMapFadeDistanceEnd: 3
+  bumpmap:
+    convertToNormalMap: 0
+    externalNormalMap: 0
+    heightScale: .25
+    normalMapFilter: 0
+  isReadable: 0
+  grayScaleToAlpha: 0
+  generateCubemap: 0
+  cubemapConvolution: 0
+  cubemapConvolutionSteps: 8
+  cubemapConvolutionExponent: 1.5
+  seamlessCubemap: 0
+  textureFormat: -1
+  maxTextureSize: 2048
+  textureSettings:
+    filterMode: -1
+    aniso: 16
+    mipBias: -1
+    wrapMode: 1
+  nPOTScale: 0
+  lightmap: 0
+  rGBM: 0
+  compressionQuality: 50
+  spriteMode: 2
+  spriteExtrude: 1
+  spriteMeshType: 1
+  alignment: 0
+  spritePivot: {x: .5, y: .5}
+  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
+  spritePixelsToUnits: 100
+  alphaIsTransparency: 1
+  textureType: 8
+  buildTargetSettings: []
+  spriteSheet:
+    sprites:
+    - name: cube_red_0
+      rect:
+        serializedVersion: 2
+        x: 14
+        y: 788
+        width: 224
+        height: 220
+      alignment: 0
+      pivot: {x: .5, y: .5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: cube_red_1
+      rect:
+        serializedVersion: 2
+        x: 267
+        y: 787
+        width: 226
+        height: 221
+      alignment: 0
+      pivot: {x: .5, y: .5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: cube_red_2
+      rect:
+        serializedVersion: 2
+        x: 526
+        y: 784
+        width: 227
+        height: 224
+      alignment: 0
+      pivot: {x: .5, y: .5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: cube_red_3
+      rect:
+        serializedVersion: 2
+        x: 782
+        y: 790
+        width: 223
+        height: 218
+      alignment: 0
+      pivot: {x: .5, y: .5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: cube_red_4
+      rect:
+        serializedVersion: 2
+        x: 1038
+        y: 790
+        width: 223
+        height: 218
+      alignment: 0
+      pivot: {x: .5, y: .5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: cube_red_5
+      rect:
+        serializedVersion: 2
+        x: 1295
+        y: 788
+        width: 223
+        height: 217
+      alignment: 0
+      pivot: {x: .5, y: .5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: cube_red_6
+      rect:
+        serializedVersion: 2
+        x: 16
+        y: 533
+        width: 220
+        height: 220
+      alignment: 0
+      pivot: {x: .5, y: .5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: cube_red_7
+      rect:
+        serializedVersion: 2
+        x: 270
+        y: 533
+        width: 223
+        height: 219
+      alignment: 0
+      pivot: {x: .5, y: .5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: cube_red_8
+      rect:
+        serializedVersion: 2
+        x: 535
+        y: 532
+        width: 224
+        height: 219
+      alignment: 0
+      pivot: {x: .5, y: .5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: cube_red_9
+      rect:
+        serializedVersion: 2
+        x: 779
+        y: 532
+        width: 222
+        height: 219
+      alignment: 0
+      pivot: {x: .5, y: .5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: cube_red_10
+      rect:
+        serializedVersion: 2
+        x: 1038
+        y: 533
+        width: 224
+        height: 217
+      alignment: 0
+      pivot: {x: .5, y: .5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: cube_red_11
+      rect:
+        serializedVersion: 2
+        x: 1295
+        y: 533
+        width: 222
+        height: 220
+      alignment: 0
+      pivot: {x: .5, y: .5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: cube_red_12
+      rect:
+        serializedVersion: 2
+        x: 14
+        y: 275
+        width: 223
+        height: 220
+      alignment: 0
+      pivot: {x: .5, y: .5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: cube_red_13
+      rect:
+        serializedVersion: 2
+        x: 269
+        y: 276
+        width: 225
+        height: 218
+      alignment: 0
+      pivot: {x: .5, y: .5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: cube_red_14
+      rect:
+        serializedVersion: 2
+        x: 527
+        y: 277
+        width: 221
+        height: 219
+      alignment: 0
+      pivot: {x: .5, y: .5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: cube_red_15
+      rect:
+        serializedVersion: 2
+        x: 778
+        y: 276
+        width: 224
+        height: 218
+      alignment: 0
+      pivot: {x: .5, y: .5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: cube_red_16
+      rect:
+        serializedVersion: 2
+        x: 1039
+        y: 278
+        width: 222
+        height: 217
+      alignment: 0
+      pivot: {x: .5, y: .5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: cube_red_17
+      rect:
+        serializedVersion: 2
+        x: 1295
+        y: 278
+        width: 222
+        height: 216
+      alignment: 0
+      pivot: {x: .5, y: .5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+  spritePackingTag: 
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

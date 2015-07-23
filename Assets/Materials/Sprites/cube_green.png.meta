@@ -1,0 +1,253 @@
+fileFormatVersion: 2
+guid: d95335b8eeeeb974f96ff04bd5cdc400
+timeCreated: 1437593057
+licenseType: Free
+TextureImporter:
+  fileIDToRecycleName:
+    21300000: cube_green_0
+    21300002: cube_green_1
+    21300004: cube_green_2
+    21300006: cube_green_3
+    21300008: cube_green_4
+    21300010: cube_green_5
+    21300012: cube_green_6
+    21300014: cube_green_7
+    21300016: cube_green_8
+    21300018: cube_green_9
+    21300020: cube_green_10
+    21300022: cube_green_11
+    21300024: cube_green_12
+    21300026: cube_green_13
+    21300028: cube_green_14
+    21300030: cube_green_15
+    21300032: cube_green_16
+    21300034: cube_green_17
+  serializedVersion: 2
+  mipmaps:
+    mipMapMode: 0
+    enableMipMap: 1
+    linearTexture: 0
+    correctGamma: 0
+    fadeOut: 0
+    borderMipMap: 0
+    mipMapFadeDistanceStart: 1
+    mipMapFadeDistanceEnd: 3
+  bumpmap:
+    convertToNormalMap: 0
+    externalNormalMap: 0
+    heightScale: .25
+    normalMapFilter: 0
+  isReadable: 0
+  grayScaleToAlpha: 0
+  generateCubemap: 0
+  cubemapConvolution: 0
+  cubemapConvolutionSteps: 8
+  cubemapConvolutionExponent: 1.5
+  seamlessCubemap: 0
+  textureFormat: -1
+  maxTextureSize: 2048
+  textureSettings:
+    filterMode: -1
+    aniso: 16
+    mipBias: -1
+    wrapMode: 1
+  nPOTScale: 0
+  lightmap: 0
+  rGBM: 0
+  compressionQuality: 50
+  spriteMode: 2
+  spriteExtrude: 1
+  spriteMeshType: 1
+  alignment: 0
+  spritePivot: {x: .5, y: .5}
+  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
+  spritePixelsToUnits: 100
+  alphaIsTransparency: 1
+  textureType: 8
+  buildTargetSettings: []
+  spriteSheet:
+    sprites:
+    - name: cube_green_0
+      rect:
+        serializedVersion: 2
+        x: 16
+        y: 788
+        width: 222
+        height: 218
+      alignment: 0
+      pivot: {x: .5, y: .5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: cube_green_1
+      rect:
+        serializedVersion: 2
+        x: 269
+        y: 787
+        width: 224
+        height: 219
+      alignment: 0
+      pivot: {x: .5, y: .5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: cube_green_2
+      rect:
+        serializedVersion: 2
+        x: 525
+        y: 785
+        width: 226
+        height: 223
+      alignment: 0
+      pivot: {x: .5, y: .5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: cube_green_3
+      rect:
+        serializedVersion: 2
+        x: 783
+        y: 789
+        width: 222
+        height: 219
+      alignment: 0
+      pivot: {x: .5, y: .5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: cube_green_4
+      rect:
+        serializedVersion: 2
+        x: 1037
+        y: 788
+        width: 225
+        height: 220
+      alignment: 0
+      pivot: {x: .5, y: .5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: cube_green_5
+      rect:
+        serializedVersion: 2
+        x: 1293
+        y: 787
+        width: 225
+        height: 220
+      alignment: 0
+      pivot: {x: .5, y: .5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: cube_green_6
+      rect:
+        serializedVersion: 2
+        x: 13
+        y: 534
+        width: 224
+        height: 219
+      alignment: 0
+      pivot: {x: .5, y: .5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: cube_green_7
+      rect:
+        serializedVersion: 2
+        x: 271
+        y: 534
+        width: 222
+        height: 218
+      alignment: 0
+      pivot: {x: .5, y: .5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: cube_green_8
+      rect:
+        serializedVersion: 2
+        x: 534
+        y: 532
+        width: 223
+        height: 218
+      alignment: 0
+      pivot: {x: .5, y: .5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: cube_green_9
+      rect:
+        serializedVersion: 2
+        x: 780
+        y: 533
+        width: 221
+        height: 216
+      alignment: 0
+      pivot: {x: .5, y: .5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: cube_green_10
+      rect:
+        serializedVersion: 2
+        x: 1039
+        y: 532
+        width: 223
+        height: 218
+      alignment: 0
+      pivot: {x: .5, y: .5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: cube_green_11
+      rect:
+        serializedVersion: 2
+        x: 1295
+        y: 534
+        width: 223
+        height: 218
+      alignment: 0
+      pivot: {x: .5, y: .5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: cube_green_12
+      rect:
+        serializedVersion: 2
+        x: 14
+        y: 275
+        width: 223
+        height: 218
+      alignment: 0
+      pivot: {x: .5, y: .5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: cube_green_13
+      rect:
+        serializedVersion: 2
+        x: 269
+        y: 276
+        width: 224
+        height: 218
+      alignment: 0
+      pivot: {x: .5, y: .5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: cube_green_14
+      rect:
+        serializedVersion: 2
+        x: 526
+        y: 279
+        width: 222
+        height: 217
+      alignment: 0
+      pivot: {x: .5, y: .5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: cube_green_15
+      rect:
+        serializedVersion: 2
+        x: 778
+        y: 275
+        width: 224
+        height: 219
+      alignment: 0
+      pivot: {x: .5, y: .5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: cube_green_16
+      rect:
+        serializedVersion: 2
+        x: 1039
+        y: 277
+        width: 223
+        height: 219
+      alignment: 0
+      pivot: {x: .5, y: .5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: cube_green_17
+      rect:
+        serializedVersion: 2
+        x: 1294
+        y: 277
+        width: 223
+        height: 219
+      alignment: 0
+      pivot: {x: .5, y: .5}
+      border: {x: 0, y: 1, z: 0, w: 0}
+  spritePackingTag: 
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
