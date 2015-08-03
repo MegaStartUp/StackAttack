@@ -8,6 +8,7 @@ public class Load_ray : MonoBehaviour
     private float max_depth;
     private float sector_width;
     private float sector_high;
+    private Animator anim; 
     GameObject General_Processor;
     //GameObject ray_line;//debag
     // Use this for initialization
@@ -19,6 +20,8 @@ public class Load_ray : MonoBehaviour
 
         min_depth = this.transform.localScale.x / 1.42f;
         max_depth = min_depth * 1.1f;
+        anim = this.GetComponent<Animator>();
+        change_anim("cube_fall");
     }
 
     // Update is called once per frame
@@ -38,6 +41,7 @@ public class Load_ray : MonoBehaviour
             {
                 Fixed_obj();
                 find = false;
+                change_anim("cube_static");
             }
         }
         else
@@ -45,6 +49,7 @@ public class Load_ray : MonoBehaviour
             if (!find)
             {
                 unFixed_obj();
+                change_anim("cube_fall");
                 find = true;
             }
         }
@@ -70,6 +75,14 @@ public class Load_ray : MonoBehaviour
         //int coord_y = (int)(this.transform.position.y / sector_high);//debag
         this.transform.parent = null;
         this.transform.GetComponent<Rigidbody2D>().isKinematic = false;
-        //Debug.Log(coord_x + " - " + coord_y + " - unFixed_obj ");//debag
+        //Debug
+    }
+    //Change animation
+    void change_anim(string str)
+    {
+        anim.SetBool("cube_static", false);
+        anim.SetBool("cube_load", false);
+        anim.SetBool("cube_fall", false);
+        anim.SetBool(str, true);
     }
 }

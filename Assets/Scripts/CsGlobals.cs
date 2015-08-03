@@ -31,9 +31,13 @@ public class CsGlobals : MonoBehaviour
     public float min_speed = 1.0f;
     public float max_speed = 5.0f;
 
+    public float load_anim_speed = 2.0f;
+    public float fall_anim_speed = 0.5f;
+    public float static_anim_speed = 2.0f;
+
     public GameObject crane_pref;
 
-    public Texture[] textures;
+    public RuntimeAnimatorController[] Load_AnimatorController;
 
 
     //Crane parametrs
@@ -47,6 +51,9 @@ public class CsGlobals : MonoBehaviour
     public float floor_dist = 0.1f;
     public float jump_col_radius = 0.5f;
     public float interact_dist = 0.5f;
+
+    public float max_reset_vec_time = 0.5f;
+    private float reset_vec_time;
 
 
     //Player variables
@@ -73,6 +80,32 @@ public class CsGlobals : MonoBehaviour
         move_vertic_button = Input.GetAxis("Vertical");
         jump_button = Input.GetAxis("Jump");
         catch_button = Input.GetKeyDown(KeyCode.E);//Catch key
-        if ((0 != (int)move_horiz_button) || (0 != (int)move_vertic_button)) orient_vect = new Vector2((int)move_horiz_button, (int)move_vertic_button);
+        //if ((0 != (int)move_horiz_button) || (0 != (int)move_vertic_button)) orient_vect = new Vector2((int)move_horiz_button, (int)move_vertic_button);
+
+        if (move_vertic_button == 0 && move_horiz_button == 0)
+        {
+            reset_vec_time += Time.deltaTime;
+            if (reset_vec_time > max_reset_vec_time) orient_vect = Vector2.zero;
+        }
+        else
+        {
+            if (move_horiz_button > 0) 
+                orient_vect.x = 1;
+            else 
+                if (move_horiz_button < 0) 
+                    orient_vect.x = -1;
+                else 
+                    orient_vect.x = 0;
+
+            if (move_vertic_button > 0)
+                orient_vect.y = 1;
+            else
+                if (move_vertic_button < 0)
+                    orient_vect.y = -1;
+                else
+                    orient_vect.y = 0;
+            reset_vec_time = 0;
+
+        }
     }
 }

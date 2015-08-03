@@ -13,8 +13,11 @@ public class Player : MonoBehaviour
     private bool Jump = true;
     private GameObject General_Processor;
     private Transform Load;
-    private float higt_load=1.3f;
+    private float higt_load=1.1f;
     private bool catch_l_f = false;
+
+    private Animator anim;
+    private Vector2 last_state_vect= new Vector2();
 
     //private float* move_horiz_button;
     //private float* jump_button;
@@ -37,6 +40,8 @@ public class Player : MonoBehaviour
         floor_dist = General_Processor.transform.GetComponent<CsGlobals>().floor_dist;
         jump_col_radius = General_Processor.transform.GetComponent<CsGlobals>().jump_col_radius;
 
+        anim = this.GetComponent<Animator>();
+
     }
 
     // Update is called once per frame
@@ -44,6 +49,7 @@ public class Player : MonoBehaviour
     {
         player_transl();
         catch_load();
+        anim_contrl();
     }
 
     //function for player transport
@@ -127,6 +133,95 @@ public class Player : MonoBehaviour
         {
             Load.position = new Vector2(this.transform.position.x, this.transform.position.y + higt_load);
         }
+    }
+    void anim_contrl()
+    {
+        if(catch_l_f)//box is load
+        {
+            if(!Jump)//Player jump
+            {
+
+                if (General_Processor.transform.GetComponent<CsGlobals>().orient_vect == Vector2.right)//Player go rigth
+                {
+                    change_anim("up_load_right");
+                }
+                else
+                {
+                    change_anim("up_load_left");
+                }
+            }
+            else
+            {
+
+                if (General_Processor.transform.GetComponent<CsGlobals>().orient_vect == Vector2.right)//Player go rigth
+                {
+                    change_anim("load_right");
+                }
+                else
+                {
+                    change_anim("load_left");
+                }
+            }
+        }
+        else
+        {
+            if (!Jump)//Player jump
+            {
+
+                if (General_Processor.transform.GetComponent<CsGlobals>().orient_vect == Vector2.right)//Player go rigth
+                {
+                    change_anim("up_right");
+                }
+                else
+                {
+                    change_anim("up_left");
+                }
+            }
+            else
+            {
+                if (General_Processor.transform.GetComponent<CsGlobals>().orient_vect == Vector2.zero)//Player stay
+                {
+                    if (last_state_vect == Vector2.right)//last  orient vector state
+                    {
+                        change_anim("right_stop");
+                    }
+                    else
+                    {
+                        change_anim("left_stop");
+                    }
+                    return;
+                }
+                else
+                {
+                    if (General_Processor.transform.GetComponent<CsGlobals>().orient_vect == Vector2.right)//Player go rigth
+                    {
+                        change_anim("move_right");
+                    }
+                    else
+                    {
+                        change_anim("move_left");
+                    }
+                }
+            }
+
+        }
+
+        last_state_vect.x = General_Processor.transform.GetComponent<CsGlobals>().orient_vect.x;
+        last_state_vect.y = General_Processor.transform.GetComponent<CsGlobals>().orient_vect.y;
+    }
+    void change_anim(string str)
+    {
+        anim.SetBool("left_stop", false);
+        anim.SetBool("right_stop", false);
+        anim.SetBool("move_left", false);
+        anim.SetBool("move_right", false);
+        anim.SetBool("load_left", false);
+        anim.SetBool("load_right", false);
+        anim.SetBool("up_left", false);
+        anim.SetBool("up_right", false);
+        anim.SetBool("up_load_left", false);
+        anim.SetBool("up_load_right", false);
+        anim.SetBool(str, true);
     }
 
 }
