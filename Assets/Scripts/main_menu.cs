@@ -32,21 +32,37 @@ public class main_menu : MonoBehaviour {
 	void OnMouseUp(){
 		//задаю значение кнопке "играть"
 		if(new_game==true){
-			camera_1.enabled=false;
+			back=false; 
+			option=false;
+			exit=false;
 			camera_2.enabled=true;
+			camera_1.enabled=false;
+			camera_3.enabled=false;
 		}
 		//задаю значение кнопке "назад" 
 		if(back==true){
+			new_game=false;
+			option=false;
+			exit=false;
 			camera_1.enabled=true;
 			camera_2.enabled=false;
+			camera_3.enabled=false;
+
 		}
 		// Задаю значение кнопке "настройки"
-		if (option == true) {
+		if(option==true) {
+			new_game=false;
+			exit=false;
+			back=false;
 			camera_3.enabled = true;
+			camera_2.enabled=false;
 			camera_1.enabled = false;
 		}
 		//задаю значение кнопке "Выход"
-		if (exit == true) {
+		if(exit == true) {
+			new_game=false;
+			option=false;
+			back=false;
 			Application.Quit ();
 		}
 	}
