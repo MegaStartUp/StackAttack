@@ -12,7 +12,7 @@ public class main_menu : MonoBehaviour {
 	//переменные типа: Камера.
 	public Camera camera_1;
 	public Camera camera_2;
-
+	public Camera camera_3;
 
 	// Use this for initialization
 	void Start () {
@@ -39,6 +39,11 @@ public class main_menu : MonoBehaviour {
 		if(back==true){
 			camera_1.enabled=true;
 			camera_2.enabled=false;
+		}
+		// Задаю значение кнопке "настройки"
+		if (option == true) {
+			camera_3.enabled = true;
+			camera_1.enabled = false;
 		}
 		//задаю значение кнопке "Выход"
 		if (exit == true) {
