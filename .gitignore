@@ -1,5 +1,6 @@
 #My ignor
 /Temp
+/Library
 *.csproj
 *.unityproj
 *.sln
