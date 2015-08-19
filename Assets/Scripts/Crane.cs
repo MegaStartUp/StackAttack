@@ -16,6 +16,7 @@ public class Crane : MonoBehaviour
 
     private bool load = true;
     private bool corout = true;
+    private float dif_time;
 
 
 
@@ -33,7 +34,10 @@ public class Crane : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (corout) driver();
+        if (corout) 
+            driver();
+        else
+            catch_off();
     }
 
     void driver()
@@ -42,8 +46,9 @@ public class Crane : MonoBehaviour
         if (load && (Mathf.Abs(transform.position.x - unload_point) <= step))
         {
             transform.position = new Vector2(unload_point, high_crane);
-            load = false;
-            StartCoroutine(Wait());
+            corout=load = false;
+            dif_time = - wait_time;
+            //StartCoroutine(Wait()); 
             return;
         }
         if (forward)
@@ -69,16 +74,29 @@ public class Crane : MonoBehaviour
 
     void catch_off()
     {
+        if (dif_time < 0)
+        {
+            dif_time += Time.deltaTime;
+            if (dif_time >= 0)
+            {
+                GameObject load_obj = transform.Find("Load").gameObject;
+                load_obj.transform.GetComponent<Rigidbody2D>().gravityScale = gravity_for_load;
+                load_obj.transform.GetComponent<Rigidbody2D>().constraints = RigidbodyConstraints2D.FreezePositionX;
+                load_obj.transform.GetComponent<Collider2D>().enabled = true;
+                load_obj.transform.GetComponent<Load_ray>().enabled = true;
+                //load_obj.transform.position = new Vector2(unload_point, high_crane);
+                load_obj.transform.parent = null;
+            }
+        }
+        else
+        {
+            dif_time += Time.deltaTime;
+            if (dif_time >= wait_time)
+                corout = true;
+        }
 
-        GameObject load_obj = transform.Find("Load").gameObject;
-        load_obj.transform.GetComponent<Rigidbody2D>().gravityScale = gravity_for_load;
-        load_obj.transform.GetComponent<Rigidbody2D>().constraints = RigidbodyConstraints2D.FreezePositionX;
-        load_obj.transform.GetComponent<Collider2D>().enabled = true;
-        load_obj.transform.GetComponent<Load_ray>().enabled = true;
-        //load_obj.transform.position = new Vector2(unload_point, high_crane);
-        load_obj.transform.parent = null;
     }
-
+    /*
     IEnumerator Wait()
     {
        float w_time = Random.Range(0.01f,wait_time);
@@ -88,6 +106,6 @@ public class Crane : MonoBehaviour
         //Debug.Log("Unloading");
         yield return new WaitForSeconds(w_time);
         corout = true;
-    }
+    }*/
 }
 

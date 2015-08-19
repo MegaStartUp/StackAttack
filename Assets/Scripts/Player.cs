@@ -7,17 +7,26 @@ public class Player : MonoBehaviour
 
     private float moving_impact;
     private float jumping_impact;
+    private float jumping_impact_multipl=1;
     private float floor_dist;
     private float jump_col_radius;
 
     private bool Jump = true;
+    private bool Jump1 = false;
     private GameObject General_Processor;
     private Transform Load;
     private float higt_load=1.1f;
     private bool catch_l_f = false;
+    private float jump_time = 0.1f;
+    private float jump_time_dif = 0.0f;
+
+    private float half_sector_width;
 
     private Animator anim;
-    private Vector2 last_state_vect= new Vector2();
+    private Vector2 last_state_vect = new Vector2();
+    private Vector3 center;
+    private Vector3 right;
+    private Vector3 left;
 
     //private float* move_horiz_button;
     //private float* jump_button;
@@ -39,8 +48,11 @@ public class Player : MonoBehaviour
         jumping_impact = General_Processor.transform.GetComponent<CsGlobals>().jumping_impact;
         floor_dist = General_Processor.transform.GetComponent<CsGlobals>().floor_dist;
         jump_col_radius = General_Processor.transform.GetComponent<CsGlobals>().jump_col_radius;
-
+        half_sector_width = General_Processor.transform.GetComponent<CsGlobals>().sector_width / 2;
         anim = this.GetComponent<Animator>();
+        center = new Vector3(0, -jump_col_radius);
+        right = new Vector3(jump_col_radius/1.5f, -jump_col_radius);
+        left = new Vector3(-jump_col_radius/1.5f, -jump_col_radius);
 
     }
 
@@ -63,25 +75,29 @@ public class Player : MonoBehaviour
 
         if (Jump && (General_Processor.transform.GetComponent<CsGlobals>().jump_button == 1))
         {
-            transform.GetComponent<Rigidbody2D>().AddForce(new Vector2(0, jumping_impact), ForceMode2D.Impulse);
-            Jump = false;
+            transform.GetComponent<Rigidbody2D>().AddForce(new Vector2(0, jumping_impact * jumping_impact_multipl), ForceMode2D.Impulse);
+            Jump1=Jump = false;
+            jump_time_dif = 0;
+
         }
-        Vector3 center = new Vector3(0, -jump_col_radius), right = new Vector3(jump_col_radius, -jump_col_radius), left = new Vector3(-jump_col_radius, -jump_col_radius);
-        if (Physics2D.Raycast(transform.position + center, -Vector2.up, floor_dist))
+        
+        if (Physics2D.Raycast(transform.position + center, -Vector2.up, floor_dist) || Physics2D.Raycast(transform.position + left, -Vector2.up, floor_dist) || Physics2D.Raycast(transform.position + right, -Vector2.up, floor_dist))
         {
-            Jump = true;
-            if (debug) Debug.Log("Collisions by centre");
+            if (Jump1)
+                Jump = true;
+            else
+            {
+                jump_time_dif += Time.deltaTime;
+                if (jump_time_dif>jump_time)
+                {
+                    Jump1 = true;
+                }
+            }
+
+            if (debug) Debug.Log("Collisions");
         }
-        if (Physics2D.Raycast(transform.position + left, -Vector2.up, floor_dist))
-        {
-            Jump = true;
-            if (debug) Debug.Log("Collisions by left");
-        }
-        if (Physics2D.Raycast(transform.position + right, -Vector2.up, floor_dist))
-        {
-            Jump = true;
-            if (debug) Debug.Log("Collisions by right");
-        }
+        else
+            Jump1 = true;
         if (debug) Debug.Log("ready");
     }
     //function for load catch
@@ -106,6 +122,7 @@ public class Player : MonoBehaviour
                         Load = hit.transform;
                         Load.parent = this.transform;
                         catch_l_f = true;
+                        jumping_impact_multipl =1.5f;
                     }
                 }
                 else
@@ -124,10 +141,13 @@ public class Player : MonoBehaviour
                 {
                     if (hit.collider == null)
                         Load.position = new Vector2(transform.position.x + General_Processor.transform.GetComponent<CsGlobals>().interact_dist * General_Processor.transform.GetComponent<CsGlobals>().orient_vect.x, transform.position.y + General_Processor.transform.GetComponent<CsGlobals>().interact_dist * General_Processor.transform.GetComponent<CsGlobals>().orient_vect.y);
+                   
+                    Load.position = new Vector2((int)Load.position.x + half_sector_width, Load.position.y);
                     Load.parent = null;
                     Load = null;
+                    jumping_impact_multipl = 1;
                 }
-            }
+            } 
         }
         if (catch_l_f)
         {
@@ -141,7 +161,7 @@ public class Player : MonoBehaviour
             if(!Jump)//Player jump
             {
 
-                if (General_Processor.transform.GetComponent<CsGlobals>().orient_vect == Vector2.right)//Player go rigth
+                if (General_Processor.transform.GetComponent<CsGlobals>().orient_vect == Vector2.right)//Player go right
                 {
                     change_anim("up_load_right");
                 }
@@ -153,7 +173,7 @@ public class Player : MonoBehaviour
             else
             {
 
-                if (General_Processor.transform.GetComponent<CsGlobals>().orient_vect == Vector2.right)//Player go rigth
+                if (General_Processor.transform.GetComponent<CsGlobals>().orient_vect == Vector2.right)//Player go right
                 {
                     change_anim("load_right");
                 }
@@ -168,7 +188,7 @@ public class Player : MonoBehaviour
             if (!Jump)//Player jump
             {
 
-                if (General_Processor.transform.GetComponent<CsGlobals>().orient_vect == Vector2.right)//Player go rigth
+                if (General_Processor.transform.GetComponent<CsGlobals>().orient_vect == Vector2.right)//Player go right
                 {
                     change_anim("up_right");
                 }
@@ -179,7 +199,7 @@ public class Player : MonoBehaviour
             }
             else
             {
-                if (General_Processor.transform.GetComponent<CsGlobals>().orient_vect == Vector2.zero)//Player stay
+                if (General_Processor.transform.GetComponent<CsGlobals>().orient_vect == Vector2.up)//Player stay
                 {
                     if (last_state_vect == Vector2.right)//last  orient vector state
                     {
@@ -193,7 +213,7 @@ public class Player : MonoBehaviour
                 }
                 else
                 {
-                    if (General_Processor.transform.GetComponent<CsGlobals>().orient_vect == Vector2.right)//Player go rigth
+                    if (General_Processor.transform.GetComponent<CsGlobals>().orient_vect == Vector2.right)//Player go right
                     {
                         change_anim("move_right");
                     }

@@ -64,6 +64,9 @@ public class CsGlobals : MonoBehaviour
     public bool catch_button;
 
 
+    //Score
+    public float score=0;
+
 
     // Use this for initialization
     void Awake()
@@ -85,7 +88,7 @@ public class CsGlobals : MonoBehaviour
         if (move_vertic_button == 0 && move_horiz_button == 0)
         {
             reset_vec_time += Time.deltaTime;
-            if (reset_vec_time > max_reset_vec_time) orient_vect = Vector2.zero;
+            if (reset_vec_time > max_reset_vec_time) orient_vect = Vector2.up;
         }
         else
         {

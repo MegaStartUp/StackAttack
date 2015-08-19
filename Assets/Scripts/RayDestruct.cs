@@ -3,10 +3,11 @@ using System.Collections;
 
 public class RayDestruct : MonoBehaviour {
     private int destr_num;
+    private GameObject General_Processor;
 
 	// Use this for initialization
 	void Start () {
-        GameObject General_Processor = GameObject.Find("General_Processor");
+        General_Processor = GameObject.Find("General_Processor");
         destr_num = General_Processor.transform.GetComponent<CsGlobals>().sector_width_count;
 	
 	}
@@ -24,6 +25,7 @@ public class RayDestruct : MonoBehaviour {
             if(destroy_count>=destr_num)
 			foreach(RaycastHit2D hit in hit_arr)
 			{
+                General_Processor.transform.GetComponent<CsGlobals>().score += destroy_count;
 				if(hit.transform.name=="Load") Destroy(hit.transform.gameObject);
 			}
 		}

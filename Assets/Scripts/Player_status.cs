@@ -34,5 +34,6 @@ public class Player_status : MonoBehaviour {
 			GUI.Box(new Rect(coord_x,coord_y,length*Fury_rel_length,width),"",GUI.skin.GetStyle("fury"));
 			GUI.Box(new Rect(coord_x,coord_y,length,width),"",GUI.skin.GetStyle("bar"));
 		}
-		}
+        GUI.Box(new Rect(coord_x * 2, coord_y * 2, length * 2, width * 2), "");
+	}
 }
