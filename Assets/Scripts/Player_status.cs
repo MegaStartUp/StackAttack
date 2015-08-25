@@ -33,7 +33,9 @@ public class Player_status : MonoBehaviour {
 			GUI.Box(new Rect(coord_x,coord_y,length*Health_rel_length,width),"",GUI.skin.GetStyle("health"));
 			GUI.Box(new Rect(coord_x,coord_y,length*Fury_rel_length,width),"",GUI.skin.GetStyle("fury"));
 			GUI.Box(new Rect(coord_x,coord_y,length,width),"",GUI.skin.GetStyle("bar"));
-		}
-        GUI.Box(new Rect(coord_x * 2, coord_y * 2, length * 2, width * 2), "");
-	}
+        }
+        GUI.Box(new Rect(Screen.width * 0.8f, Screen.height * 0.1f, Screen.width * 0.3f, Screen.height * 0.1f), "" + GameObject.Find("General_Processor").transform.GetComponent<CsGlobals>().score);
+        if (GameObject.Find("General_Processor").transform.GetComponent<CsGlobals>().GmOv) GUI.Box(new Rect(Screen.width/2, Screen.height/2, Screen.width * 0.2f, Screen.height * 0.1f), "The Game Over");
+	
+    }
 }

@@ -62,6 +62,7 @@ public class Player : MonoBehaviour
         player_transl();
         catch_load();
         anim_contrl();
+        game_over();
     }
 
     //function for player transport
@@ -122,7 +123,7 @@ public class Player : MonoBehaviour
                         Load = hit.transform;
                         Load.parent = this.transform;
                         catch_l_f = true;
-                        jumping_impact_multipl =1.5f;
+                        jumping_impact_multipl =2f;
                     }
                 }
                 else
@@ -141,11 +142,11 @@ public class Player : MonoBehaviour
                 {
                     if (hit.collider == null)
                         Load.position = new Vector2(transform.position.x + General_Processor.transform.GetComponent<CsGlobals>().interact_dist * General_Processor.transform.GetComponent<CsGlobals>().orient_vect.x, transform.position.y + General_Processor.transform.GetComponent<CsGlobals>().interact_dist * General_Processor.transform.GetComponent<CsGlobals>().orient_vect.y);
-                   
-                    Load.position = new Vector2((int)Load.position.x + half_sector_width, Load.position.y);
-                    Load.parent = null;
-                    Load = null;
-                    jumping_impact_multipl = 1;
+
+                        Load.position = new Vector2((int)Load.position.x + half_sector_width, Load.position.y);
+                        Load.parent = null;
+                        Load = null;
+                        jumping_impact_multipl = 1;
                 }
             } 
         }
@@ -243,5 +244,16 @@ public class Player : MonoBehaviour
         anim.SetBool("up_load_right", false);
         anim.SetBool(str, true);
     }
+    void game_over()
+    {
+        RaycastHit2D[] hit_arr = Physics2D.RaycastAll(transform.position, Vector2.up, 2.0f * General_Processor.transform.GetComponent<CsGlobals>().sector_high);
+        foreach (RaycastHit2D hit in hit_arr)
+        {
+            if (hit.transform.name == "Load" && hit.transform.parent != null && hit.transform.parent != this.transform)
+                General_Processor.transform.GetComponent<CsGlobals>().GmOv = true;
+
+        }
+    }
 
 }
+

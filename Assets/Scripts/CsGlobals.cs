@@ -4,12 +4,18 @@ using System.Collections;
 public class CsGlobals : MonoBehaviour
 {
     //Scale parametrs
-    public int sector_width_count=16;
-    public int sector_high_count=9;
+    public bool pause = false;
+
+    //Scale parametrs
+    public int sector_width_count = 16;
+    public int sector_high_count = 9;
 
     public float sector_width = 1.0f;
     public float sector_high = 1.0f;
     public float ray_coord_x = -1.0f;
+    public float ray_coord_y = -1.0f;
+
+
     //Automatic calculate
     public float high;
     public float width;
@@ -18,6 +24,7 @@ public class CsGlobals : MonoBehaviour
     //Global builder parametrs
     public GameObject sector_pref;
     public GameObject destr_pref;
+    public GameObject GOR_pref;
     public GameObject border_pref;
     public GameObject player_pref;
 
@@ -66,6 +73,7 @@ public class CsGlobals : MonoBehaviour
 
     //Score
     public float score=0;
+    public bool GmOv = false;
 
 
     // Use this for initialization
@@ -110,5 +118,9 @@ public class CsGlobals : MonoBehaviour
             reset_vec_time = 0;
 
         }
+        if (pause || GmOv)
+            Time.timeScale = 0;
+        else
+            Time.timeScale = 1;
     }
 }
