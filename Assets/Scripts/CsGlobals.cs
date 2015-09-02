@@ -59,68 +59,117 @@ public class CsGlobals : MonoBehaviour
     public float jump_col_radius = 0.5f;
     public float interact_dist = 0.5f;
 
-    public float max_reset_vec_time = 0.5f;
-    private float reset_vec_time;
 
 
     //Player variables
     public Vector2 orient_vect;
-    public float move_horiz_button;
-    public float move_vertic_button;
-    public float jump_button;
+    public int move_horiz_button;
+    public int move_vertic_button;
+    public bool jump_button;
     public bool catch_button;
+    public bool wait_state;
 
 
     //Score
-    public float score=0;
+    public int score = 0;
+    public int top_score = 0;
+    public int last_score = 0;
     public bool GmOv = false;
+    private bool _GmOv = true;
+    
+    //Preferens
+    public float sound;
+    public string language;
+    public string mode;
 
-
+    //Game Over objects
+    public GameObject Pause;
+    public GameObject Im_P;
+    public GameObject Im_G_O;
+    public GameObject BackGr_and_Menu;
+    private IControl IContr;
     // Use this for initialization
     void Awake()
     {
-      
         high = sector_high_count * sector_high;
         width = sector_width_count * sector_width;
+        Pause = GameObject.Find("Pause");
+        Im_P = GameObject.Find("Im_Pause");
+        Im_G_O = GameObject.Find("Im_GameOver");
+        BackGr_and_Menu = GameObject.Find("Backgr_and_Menu");
+        Im_G_O.SetActive(false);
+
+        top_score = Store.Top_result();
+        last_score = Store.Last_result();
+        sound = Store.Value_Sound();
+        language = Store.Lang();
+        mode = Store.Mode();
+
+        IContr=new IUControl_Release();
     }
 
     // Update is called once per frame
     void Update()
     {
-        move_horiz_button = Input.GetAxis("Horizontal");
-        move_vertic_button = Input.GetAxis("Vertical");
-        jump_button = Input.GetAxis("Jump");
-        catch_button = Input.GetKeyDown(KeyCode.E);//Catch key
-        //if ((0 != (int)move_horiz_button) || (0 != (int)move_vertic_button)) orient_vect = new Vector2((int)move_horiz_button, (int)move_vertic_button);
 
+        sound = Store.Value_Sound();
+        language = Store.Lang();
+        mode = Store.Mode();
+
+        if (GmOv) game_over();
+        else
+            game();
+    }
+
+    void pause_game()
+    {
+        Time.timeScale = 0;
+    }
+
+    void unpause_game()
+    {
+        Time.timeScale = 1;
+    }
+
+    void game_over()
+    {
+        if (_GmOv)
+        {
+
+            Time.timeScale = 0.1f;
+            Pause.SetActive(false);
+            Im_P.SetActive(false);
+            Im_G_O.SetActive(true);
+            BackGr_and_Menu.SetActive(true);
+            BackGr_and_Menu.GetComponent<Control_Button>().Click_Back_to_Setting();
+            Store.Save_Score(score);
+            top_score = Store.Top_result();
+            last_score = Store.Last_result();
+            _GmOv = false;
+        }
+    }
+
+    void game()
+    {
+        jump_button = IContr.Get_Jump();
+        catch_button = IContr.Get_Catch();
+        move_vertic_button = IContr.Vertical_Axis();
+        move_horiz_button = IContr.Horizontal_Axis();
+        IContr.Get_Pause();
         if (move_vertic_button == 0 && move_horiz_button == 0)
         {
-            reset_vec_time += Time.deltaTime;
-            if (reset_vec_time > max_reset_vec_time) orient_vect = Vector2.up;
+            wait_state = true;
         }
         else
         {
-            if (move_horiz_button > 0) 
-                orient_vect.x = 1;
-            else 
-                if (move_horiz_button < 0) 
-                    orient_vect.x = -1;
-                else 
-                    orient_vect.x = 0;
-
-            if (move_vertic_button > 0)
-                orient_vect.y = 1;
-            else
-                if (move_vertic_button < 0)
-                    orient_vect.y = -1;
-                else
-                    orient_vect.y = 0;
-            reset_vec_time = 0;
-
+            orient_vect.x = move_horiz_button;
+            orient_vect.y = move_vertic_button;
+            wait_state = false;
         }
-        if (pause || GmOv)
-            Time.timeScale = 0;
+
+        if (pause)
+            pause_game();
         else
-            Time.timeScale = 1;
+            unpause_game();
     }
 }

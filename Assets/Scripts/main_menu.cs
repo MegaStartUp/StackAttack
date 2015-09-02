@@ -32,12 +32,13 @@ public class main_menu : MonoBehaviour {
 	void OnMouseUp(){
 		//задаю значение кнопке "играть"
 		if(new_game==true){
-			back=false; 
-			option=false;
-			exit=false;
-			camera_2.enabled=true;
-			camera_1.enabled=false;
-			camera_3.enabled=false;
+            //back=false; 
+            //option=false;
+            //exit=false;
+            //camera_2.enabled=true;
+            //camera_1.enabled=false;
+            //camera_3.enabled=false;
+            Application.LoadLevel("Game");
 		}
 		//задаю значение кнопке "назад" 
 		if(back==true){

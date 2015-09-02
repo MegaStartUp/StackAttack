@@ -13,7 +13,7 @@ public class Player : MonoBehaviour
 
     private bool Jump = true;
     private bool Jump1 = false;
-    private GameObject General_Processor;
+    private CsGlobals General_Processor;
     private Transform Load;
     private float higt_load=1.1f;
     private bool catch_l_f = false;
@@ -42,13 +42,13 @@ public class Player : MonoBehaviour
     // Use this for initialization
     void Start()
     {
-        General_Processor = GameObject.Find("General_Processor");
+        General_Processor = GameObject.Find("General_Processor").transform.GetComponent<CsGlobals>();
 
-        moving_impact = General_Processor.transform.GetComponent<CsGlobals>().moving_impact;
-        jumping_impact = General_Processor.transform.GetComponent<CsGlobals>().jumping_impact;
-        floor_dist = General_Processor.transform.GetComponent<CsGlobals>().floor_dist;
-        jump_col_radius = General_Processor.transform.GetComponent<CsGlobals>().jump_col_radius;
-        half_sector_width = General_Processor.transform.GetComponent<CsGlobals>().sector_width / 2;
+        moving_impact = General_Processor.moving_impact;
+        jumping_impact = General_Processor.jumping_impact;
+        floor_dist = General_Processor.floor_dist;
+        jump_col_radius = General_Processor.jump_col_radius;
+        half_sector_width = General_Processor.sector_width / 2;
         anim = this.GetComponent<Animator>();
         center = new Vector3(0, -jump_col_radius);
         right = new Vector3(jump_col_radius/1.5f, -jump_col_radius);
@@ -60,7 +60,7 @@ public class Player : MonoBehaviour
     void Update()
     {
         player_transl();
-        catch_load();
+        catch_or_separation_load();
         anim_contrl();
         game_over();
     }
@@ -70,11 +70,11 @@ public class Player : MonoBehaviour
     {
 
         if (Jump)
-            transform.GetComponent<Rigidbody2D>().AddForce(new Vector2(moving_impact * General_Processor.transform.GetComponent<CsGlobals>().move_horiz_button * Time.deltaTime, 0), ForceMode2D.Impulse);
+            transform.GetComponent<Rigidbody2D>().AddForce(new Vector2(moving_impact * General_Processor.move_horiz_button * Time.deltaTime, 0), ForceMode2D.Impulse);
         else
-            transform.GetComponent<Rigidbody2D>().AddForce(new Vector2(moving_impact * General_Processor.transform.GetComponent<CsGlobals>().move_horiz_button * Time.deltaTime / 5, 0), ForceMode2D.Impulse);
+            transform.GetComponent<Rigidbody2D>().AddForce(new Vector2(moving_impact * General_Processor.move_horiz_button * Time.deltaTime / 5, 0), ForceMode2D.Impulse);
 
-        if (Jump && (General_Processor.transform.GetComponent<CsGlobals>().jump_button == 1))
+        if (Jump && (General_Processor.jump_button))
         {
             transform.GetComponent<Rigidbody2D>().AddForce(new Vector2(0, jumping_impact * jumping_impact_multipl), ForceMode2D.Impulse);
             Jump1=Jump = false;
@@ -102,22 +102,27 @@ public class Player : MonoBehaviour
         if (debug) Debug.Log("ready");
     }
     //function for load catch
-    void catch_load()
+    void catch_or_separation_load()
     {
-        if (General_Processor.transform.GetComponent<CsGlobals>().catch_button)
+        RaycastHit2D hit = Physics2D.Raycast(transform.position, General_Processor.orient_vect, General_Processor.interact_dist, LayerMask.GetMask("Load"));
+        if (hit.collider != null)
+        {
+            hit.transform.GetComponent<Color_control>().separation = true;
+            hit.transform.GetComponent<Color_control>().change_fl = true;
+        }
+        if (General_Processor.catch_button)
         {
            /* Destroy(ray_line);
             ray_line = new GameObject();
             LineRenderer _line = ray_line.AddComponent<LineRenderer>();
             _line.SetPosition(0, transform.position);
-            _line.SetPosition(1, new Vector2(transform.position.x + General_Processor.transform.GetComponent<CsGlobals>().interact_dist*General_Processor.transform.GetComponent<CsGlobals>().orient_vect.x, transform.position.y + General_Processor.transform.GetComponent<CsGlobals>().interact_dist * General_Processor.transform.GetComponent<CsGlobals>().orient_vect.y));
+            _line.SetPosition(1, new Vector2(transform.position.x + General_Processor.interact_dist*General_Processor.orient_vect.x, transform.position.y + General_Processor.interact_dist * General_Processor.orient_vect.y));
             _line.SetWidth(0.05f, 0.05f);*/
-            RaycastHit2D hit = Physics2D.Raycast(transform.position, General_Processor.transform.GetComponent<CsGlobals>().orient_vect, General_Processor.transform.GetComponent<CsGlobals>().interact_dist, LayerMask.GetMask("Load"));
             if ((hit.collider != null) && !catch_l_f)
             {
-                if (Vector2.up != General_Processor.transform.GetComponent<CsGlobals>().orient_vect)
+                if (Vector2.up != General_Processor.orient_vect)
                 {
-                    RaycastHit2D hit1 = Physics2D.Raycast(transform.position, Vector2.up, General_Processor.transform.GetComponent<CsGlobals>().interact_dist, LayerMask.GetMask("Load"));
+                    RaycastHit2D hit1 = Physics2D.Raycast(transform.position, Vector2.up, General_Processor.interact_dist, LayerMask.GetMask("Load"));
                     if (hit1.collider == null)
                     {
                         Load = hit.transform;
@@ -137,11 +142,11 @@ public class Player : MonoBehaviour
             else
             {
                 catch_l_f = false;
-                hit = Physics2D.Raycast(transform.position, General_Processor.transform.GetComponent<CsGlobals>().orient_vect, General_Processor.transform.GetComponent<CsGlobals>().interact_dist, LayerMask.GetMask("Load", "Border"));
+                hit = Physics2D.Raycast(transform.position, General_Processor.orient_vect, General_Processor.interact_dist+0.1f, LayerMask.GetMask("Load", "Border"));
                 if (Load != null)
                 {
                     if (hit.collider == null)
-                        Load.position = new Vector2(transform.position.x + General_Processor.transform.GetComponent<CsGlobals>().interact_dist * General_Processor.transform.GetComponent<CsGlobals>().orient_vect.x, transform.position.y + General_Processor.transform.GetComponent<CsGlobals>().interact_dist * General_Processor.transform.GetComponent<CsGlobals>().orient_vect.y);
+                        Load.position = new Vector2(transform.position.x + General_Processor.interact_dist * General_Processor.orient_vect.x, transform.position.y + General_Processor.interact_dist * General_Processor.orient_vect.y);
 
                         Load.position = new Vector2((int)Load.position.x + half_sector_width, Load.position.y);
                         Load.parent = null;
@@ -154,6 +159,7 @@ public class Player : MonoBehaviour
         {
             Load.position = new Vector2(this.transform.position.x, this.transform.position.y + higt_load);
         }
+            
     }
     void anim_contrl()
     {
@@ -162,7 +168,7 @@ public class Player : MonoBehaviour
             if(!Jump)//Player jump
             {
 
-                if (General_Processor.transform.GetComponent<CsGlobals>().orient_vect == Vector2.right)//Player go right
+                if (General_Processor.orient_vect == Vector2.right)//Player go right
                 {
                     change_anim("up_load_right");
                 }
@@ -174,7 +180,7 @@ public class Player : MonoBehaviour
             else
             {
 
-                if (General_Processor.transform.GetComponent<CsGlobals>().orient_vect == Vector2.right)//Player go right
+                if (General_Processor.orient_vect == Vector2.right)//Player go right
                 {
                     change_anim("load_right");
                 }
@@ -189,7 +195,7 @@ public class Player : MonoBehaviour
             if (!Jump)//Player jump
             {
 
-                if (General_Processor.transform.GetComponent<CsGlobals>().orient_vect == Vector2.right)//Player go right
+                if (General_Processor.orient_vect == Vector2.right)//Player go right
                 {
                     change_anim("up_right");
                 }
@@ -200,7 +206,7 @@ public class Player : MonoBehaviour
             }
             else
             {
-                if (General_Processor.transform.GetComponent<CsGlobals>().orient_vect == Vector2.up)//Player stay
+                if (General_Processor.wait_state)//Player stay
                 {
                     if (last_state_vect == Vector2.right)//last  orient vector state
                     {
@@ -214,7 +220,7 @@ public class Player : MonoBehaviour
                 }
                 else
                 {
-                    if (General_Processor.transform.GetComponent<CsGlobals>().orient_vect == Vector2.right)//Player go right
+                    if (General_Processor.orient_vect == Vector2.right)//Player go right
                     {
                         change_anim("move_right");
                     }
@@ -227,8 +233,8 @@ public class Player : MonoBehaviour
 
         }
 
-        last_state_vect.x = General_Processor.transform.GetComponent<CsGlobals>().orient_vect.x;
-        last_state_vect.y = General_Processor.transform.GetComponent<CsGlobals>().orient_vect.y;
+        last_state_vect.x = General_Processor.orient_vect.x;
+        last_state_vect.y = General_Processor.orient_vect.y;
     }
     void change_anim(string str)
     {
@@ -246,12 +252,29 @@ public class Player : MonoBehaviour
     }
     void game_over()
     {
-        RaycastHit2D[] hit_arr = Physics2D.RaycastAll(transform.position, Vector2.up, 2.0f * General_Processor.transform.GetComponent<CsGlobals>().sector_high);
-        foreach (RaycastHit2D hit in hit_arr)
+        RaycastHit2D[] hit_arr_t = Physics2D.RaycastAll(transform.position, Vector2.up, 2.0f * General_Processor.sector_high);
+        foreach (RaycastHit2D hit in hit_arr_t)
         {
             if (hit.transform.name == "Load" && hit.transform.parent != null && hit.transform.parent != this.transform)
-                General_Processor.transform.GetComponent<CsGlobals>().GmOv = true;
+            {
+                RaycastHit2D[] hit_arr_r = Physics2D.RaycastAll(transform.position, Vector2.right, General_Processor.sector_high);
+                foreach (RaycastHit2D hit_r in hit_arr_r)
+                {
+                    if ((hit_r.transform.name == "Load" && hit_r.transform.parent != null && hit_r.transform.parent != this.transform) || hit_r.transform.name == "right_wall")
+                    {
+                        RaycastHit2D[] hit_arr_l = Physics2D.RaycastAll(transform.position, Vector2.left, General_Processor.sector_high);
+                        foreach (RaycastHit2D hit_l in hit_arr_l)
+                        {
+                            if ((hit_l.transform.name == "Load" && hit_l.transform.parent != null && hit_l.transform.parent != this.transform) || hit_l.transform.name == "left_wall")
+                            {
+                                General_Processor.GmOv = true;
+                            }
 
+                        }
+                    }
+
+                }
+            }
         }
     }
 
