@@ -13,21 +13,41 @@ public class main_menu : MonoBehaviour {
 	public Camera camera_1;
 	public Camera camera_2;
 	public Camera camera_3;
+	//для смены дневного и ночного режима
+    public bool day = false;
+    public bool night = false;
 
-	// Use this for initialization
+    //для анимации
+    private Animator anim;
+	private Animator Animation_2;
+	private Animator Animation_1;
+   
+	
 	void Start () {
 		//присваиваем переменной ренд значение.
 		Rend = GetComponent<Renderer> ();
+        // для анимации кнопок 
+        anim = this.GetComponent<Animator>();
+        
 	}
 	//функции взаимодействия с курсором
 	void OnMouseEnter(){
 		Rend.material.color = Color.red;
+        anim.SetBool("Animation_2", true);
+        anim.SetBool("Animation_1", false);
+        
+
 	}
 	void OnMouseOver(){
 		Rend.material.color -= new Color (0,1F, 0, 0) * Time.deltaTime;
+		anim.SetBool("Animation_2", true);
+		anim.SetBool("Animation_1", false);
 	}
 	void OnMouseExit(){
 		Rend.material.color = Color.white;
+		anim.SetBool("Animation_2", false);
+		anim.SetBool("Animation_1", true);
+
 	}
 	void OnMouseUp(){
 		//задаю значение кнопке "играть"
@@ -66,6 +86,7 @@ public class main_menu : MonoBehaviour {
 			back=false;
 			Application.Quit ();
 		}
+
 	}
 	// Update is called once per frame
 	void Update () {
