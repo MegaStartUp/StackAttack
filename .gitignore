@@ -1,5 +1,6 @@
 #My ignor
 /Temp
+/Library
 /obj
 *.csproj
 *.unityproj
