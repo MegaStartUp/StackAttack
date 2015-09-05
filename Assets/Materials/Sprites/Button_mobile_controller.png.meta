@@ -1,9 +1,21 @@
 fileFormatVersion: 2
 guid: 200a4772bb4825942b667a513c7dc23c
-timeCreated: 1441050901
+timeCreated: 1441292647
 licenseType: Free
 TextureImporter:
-  fileIDToRecycleName: {}
+  fileIDToRecycleName:
+    21300000: Button_mobile_controller_0
+    21300002: Button_mobile_controller_1
+    21300004: Button_mobile_controller_2
+    21300006: Button_mobile_controller_3
+    21300008: Button_mobile_controller_4
+    21300010: Button_mobile_controller_5
+    21300012: Button_mobile_controller_6
+    21300014: Button_mobile_controller_7
+    21300016: Button_mobile_controller_8
+    21300018: Button_mobile_controller_9
+    21300020: Button_mobile_controller_10
+    21300022: Button_mobile_controller_11
   serializedVersion: 2
   mipmaps:
     mipMapMode: 0
@@ -30,25 +42,145 @@ TextureImporter:
   maxTextureSize: 2048
   textureSettings:
     filterMode: -1
-    aniso: -1
+    aniso: 16
     mipBias: -1
-    wrapMode: -1
-  nPOTScale: 1
+    wrapMode: 1
+  nPOTScale: 0
   lightmap: 0
   rGBM: 0
   compressionQuality: 50
-  spriteMode: 0
+  spriteMode: 2
   spriteExtrude: 1
   spriteMeshType: 1
   alignment: 0
   spritePivot: {x: .5, y: .5}
   spriteBorder: {x: 0, y: 0, z: 0, w: 0}
   spritePixelsToUnits: 100
-  alphaIsTransparency: 0
-  textureType: -1
+  alphaIsTransparency: 1
+  textureType: 8
   buildTargetSettings: []
   spriteSheet:
-    sprites: []
+    sprites:
+    - name: Button_mobile_controller_0
+      rect:
+        serializedVersion: 2
+        x: 24
+        y: 407
+        width: 83
+        height: 80
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: Button_mobile_controller_1
+      rect:
+        serializedVersion: 2
+        x: 127
+        y: 407
+        width: 83
+        height: 80
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: Button_mobile_controller_2
+      rect:
+        serializedVersion: 2
+        x: 324
+        y: 406
+        width: 81
+        height: 82
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: Button_mobile_controller_3
+      rect:
+        serializedVersion: 2
+        x: 418
+        y: 404
+        width: 81
+        height: 84
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: Button_mobile_controller_4
+      rect:
+        serializedVersion: 2
+        x: 24
+        y: 312
+        width: 83
+        height: 80
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: Button_mobile_controller_5
+      rect:
+        serializedVersion: 2
+        x: 124
+        y: 312
+        width: 86
+        height: 80
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: Button_mobile_controller_6
+      rect:
+        serializedVersion: 2
+        x: 324
+        y: 311
+        width: 81
+        height: 82
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: Button_mobile_controller_7
+      rect:
+        serializedVersion: 2
+        x: 416
+        y: 311
+        width: 84
+        height: 82
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: Button_mobile_controller_8
+      rect:
+        serializedVersion: 2
+        x: 47
+        y: 80
+        width: 141
+        height: 138
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: Button_mobile_controller_9
+      rect:
+        serializedVersion: 2
+        x: 404
+        y: 120
+        width: 84
+        height: 85
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: Button_mobile_controller_10
+      rect:
+        serializedVersion: 2
+        x: 92
+        y: 19
+        width: 40
+        height: 38
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: Button_mobile_controller_11
+      rect:
+        serializedVersion: 2
+        x: 405
+        y: 28
+        width: 81
+        height: 82
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
   spritePackingTag: 
   userData: 
   assetBundleName: 

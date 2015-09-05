@@ -78,4 +78,9 @@ public class Control_Button:MonoBehaviour
     {
         Store.Save_Lang(Global.language = "Russian");
     }
+    public void Click_Reset_Stat()
+    {
+        Store.Reset_Score();
+        Global.Overwrite_param();
+    }
 }

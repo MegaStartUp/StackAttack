@@ -1,9 +1,17 @@
 fileFormatVersion: 2
 guid: 25836185cc41e564d9007e26e2a66680
-timeCreated: 1441050903
+timeCreated: 1441293239
 licenseType: Free
 TextureImporter:
-  fileIDToRecycleName: {}
+  fileIDToRecycleName:
+    21300000: maximize_resolt_0
+    21300002: maximize_resolt_1
+    21300004: maximize_resolt_2
+    21300006: maximize_resolt_3
+    21300008: maximize_resolt_4
+    21300010: maximize_resolt_5
+    21300012: maximize_resolt_6
+    21300014: maximize_resolt_7
   serializedVersion: 2
   mipmaps:
     mipMapMode: 0
@@ -30,25 +38,105 @@ TextureImporter:
   maxTextureSize: 2048
   textureSettings:
     filterMode: -1
-    aniso: -1
+    aniso: 16
     mipBias: -1
-    wrapMode: -1
-  nPOTScale: 1
+    wrapMode: 1
+  nPOTScale: 0
   lightmap: 0
   rGBM: 0
   compressionQuality: 50
-  spriteMode: 0
+  spriteMode: 2
   spriteExtrude: 1
   spriteMeshType: 1
   alignment: 0
   spritePivot: {x: .5, y: .5}
   spriteBorder: {x: 0, y: 0, z: 0, w: 0}
   spritePixelsToUnits: 100
-  alphaIsTransparency: 0
-  textureType: -1
+  alphaIsTransparency: 1
+  textureType: 8
   buildTargetSettings: []
   spriteSheet:
-    sprites: []
+    sprites:
+    - name: maximize_resolt_0
+      rect:
+        serializedVersion: 2
+        x: 11
+        y: 435
+        width: 485
+        height: 58
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: maximize_resolt_1
+      rect:
+        serializedVersion: 2
+        x: 20
+        y: 372
+        width: 401
+        height: 49
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: maximize_resolt_2
+      rect:
+        serializedVersion: 2
+        x: 27
+        y: 308
+        width: 407
+        height: 56
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: maximize_resolt_3
+      rect:
+        serializedVersion: 2
+        x: 435
+        y: 338
+        width: 8
+        height: 8
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: maximize_resolt_4
+      rect:
+        serializedVersion: 2
+        x: 435
+        y: 325
+        width: 8
+        height: 8
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: maximize_resolt_5
+      rect:
+        serializedVersion: 2
+        x: 31
+        y: 259
+        width: 289
+        height: 46
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: maximize_resolt_6
+      rect:
+        serializedVersion: 2
+        x: 56
+        y: 157
+        width: 327
+        height: 72
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: maximize_resolt_7
+      rect:
+        serializedVersion: 2
+        x: 56
+        y: 54
+        width: 327
+        height: 72
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
   spritePackingTag: 
   userData: 
   assetBundleName: 

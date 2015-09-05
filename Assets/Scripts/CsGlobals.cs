@@ -65,17 +65,55 @@ public class CsGlobals : MonoBehaviour
     public Vector2 orient_vect;
     public int move_horiz_button;
     public int move_vertic_button;
+    public float acacceleration_coef;
     public bool jump_button;
     public bool catch_button;
     public bool wait_state;
 
 
     //Score
-    public int score = 0;
-    public int top_score = 0;
-    public int last_score = 0;
+    private int Score = 0;
+    private int Top_Score = 0;
+    private int Last_Score = 0;
+    public int score
+    {
+        get
+        {
+            return Score;
+        }
+        set
+        {
+            if(Count!=null)
+                Count.score = Score = value;
+            else
+                Score = value;
+        }
+    }
+    public int top_score
+    {
+        get
+        {
+            return Top_Score;
+        }
+        set
+        {
+            Top_Score = value;
+        }
+    }
+    public int last_score
+    {
+        get
+        {
+            return Last_Score;
+        }
+        set
+        {
+            Last_Score = value;
+        }
+    }
     public bool GmOv = false;
     private bool _GmOv = true;
+    public Sprite[] sprite;
     
     //Preferens
     public float sound;
@@ -88,6 +126,9 @@ public class CsGlobals : MonoBehaviour
     public GameObject Im_G_O;
     public GameObject BackGr_and_Menu;
     private IControl IContr;
+    private Indicator Count;
+    private Indicator L_Count;
+    private Indicator T_Count;
     // Use this for initialization
     void Awake()
     {
@@ -97,14 +138,9 @@ public class CsGlobals : MonoBehaviour
         Im_P = GameObject.Find("Im_Pause");
         Im_G_O = GameObject.Find("Im_GameOver");
         BackGr_and_Menu = GameObject.Find("Backgr_and_Menu");
+        Count = GameObject.Find("Counter").GetComponent<Indicator>();
         Im_G_O.SetActive(false);
-
-        top_score = Store.Top_result();
-        last_score = Store.Last_result();
-        sound = Store.Value_Sound();
-        language = Store.Lang();
-        mode = Store.Mode();
-
+        Overwrite_param();
         IContr=new IUControl_Release();
     }
 
@@ -115,7 +151,6 @@ public class CsGlobals : MonoBehaviour
         sound = Store.Value_Sound();
         language = Store.Lang();
         mode = Store.Mode();
-
         if (GmOv) game_over();
         else
             game();
@@ -171,5 +206,21 @@ public class CsGlobals : MonoBehaviour
             pause_game();
         else
             unpause_game();
+        if (wait_state)
+            acacceleration_coef = 0;
+        else
+            if(acacceleration_coef<1.0f)
+                acacceleration_coef+=Time.deltaTime*5;
+            else
+                acacceleration_coef=1.0f;
+
+    }
+    public void Overwrite_param()
+    {
+        top_score = Store.Top_result();
+        last_score = Store.Last_result();
+        sound = Store.Value_Sound();
+        language = Store.Lang();
+        mode = Store.Mode();
     }
 }

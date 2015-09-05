@@ -24,9 +24,12 @@ public class Player : MonoBehaviour
 
     private Animator anim;
     private Vector2 last_state_vect = new Vector2();
+    private Vector2 last_position;
     private Vector3 center;
     private Vector3 right;
     private Vector3 left;
+    private Rigidbody2D RB2D;
+    private bool jump_active;
 
     //private float* move_horiz_button;
     //private float* jump_button;
@@ -43,7 +46,6 @@ public class Player : MonoBehaviour
     void Start()
     {
         General_Processor = GameObject.Find("General_Processor").transform.GetComponent<CsGlobals>();
-
         moving_impact = General_Processor.moving_impact;
         jumping_impact = General_Processor.jumping_impact;
         floor_dist = General_Processor.floor_dist;
@@ -53,6 +55,7 @@ public class Player : MonoBehaviour
         center = new Vector3(0, -jump_col_radius);
         right = new Vector3(jump_col_radius/1.5f, -jump_col_radius);
         left = new Vector3(-jump_col_radius/1.5f, -jump_col_radius);
+        RB2D = transform.GetComponent<Rigidbody2D>();
 
     }
 
@@ -68,28 +71,31 @@ public class Player : MonoBehaviour
     //function for player transport
     void player_transl()
     {
-
         if (Jump)
-            transform.GetComponent<Rigidbody2D>().AddForce(new Vector2(moving_impact * General_Processor.move_horiz_button * Time.deltaTime, 0), ForceMode2D.Impulse);
+        {
+            RB2D.AddForce(new Vector2(moving_impact * General_Processor.move_horiz_button* 1f* Time.deltaTime, 0), ForceMode2D.Impulse);
+            if (General_Processor.wait_state && !jump_active) RB2D.velocity = -RB2D.velocity;
+            else RB2D.drag = 3;
+        }
         else
-            transform.GetComponent<Rigidbody2D>().AddForce(new Vector2(moving_impact * General_Processor.move_horiz_button * Time.deltaTime / 5, 0), ForceMode2D.Impulse);
+            RB2D.AddForce(new Vector2(moving_impact * General_Processor.move_horiz_button *1f * Time.deltaTime * 0.2f, 0), ForceMode2D.Impulse);
 
         if (Jump && (General_Processor.jump_button))
         {
-            transform.GetComponent<Rigidbody2D>().AddForce(new Vector2(0, jumping_impact * jumping_impact_multipl), ForceMode2D.Impulse);
+            RB2D.AddForce(new Vector2(0, jumping_impact * jumping_impact_multipl), ForceMode2D.Impulse);
             Jump1=Jump = false;
             jump_time_dif = 0;
-
         }
-        
+
         if (Physics2D.Raycast(transform.position + center, -Vector2.up, floor_dist) || Physics2D.Raycast(transform.position + left, -Vector2.up, floor_dist) || Physics2D.Raycast(transform.position + right, -Vector2.up, floor_dist))
         {
+            jump_active = false;
             if (Jump1)
                 Jump = true;
             else
             {
                 jump_time_dif += Time.deltaTime;
-                if (jump_time_dif>jump_time)
+                if (jump_time_dif > jump_time)
                 {
                     Jump1 = true;
                 }
@@ -98,8 +104,10 @@ public class Player : MonoBehaviour
             if (debug) Debug.Log("Collisions");
         }
         else
+        {
+            jump_active = true;
             Jump1 = true;
-        if (debug) Debug.Log("ready");
+        }
     }
     //function for load catch
     void catch_or_separation_load()
@@ -157,7 +165,10 @@ public class Player : MonoBehaviour
         }
         if (catch_l_f)
         {
-            Load.position = new Vector2(this.transform.position.x, this.transform.position.y + higt_load);
+            if (Load != null)
+                Load.position = new Vector2(this.transform.position.x, this.transform.position.y + higt_load);
+            else
+                catch_l_f = false;
         }
             
     }

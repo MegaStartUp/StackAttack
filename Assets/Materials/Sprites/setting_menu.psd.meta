@@ -1,9 +1,15 @@
 fileFormatVersion: 2
 guid: cabcf4051fc884d45a426de46ffb3389
-timeCreated: 1441268447
+timeCreated: 1441293390
 licenseType: Free
 TextureImporter:
-  fileIDToRecycleName: {}
+  fileIDToRecycleName:
+    21300000: setting_menu_0
+    21300002: setting_menu_1
+    21300004: setting_menu_5
+    21300006: setting_menu_6
+    21300008: setting_menu_7
+    21300010: setting_menu_8
   serializedVersion: 2
   mipmaps:
     mipMapMode: 0
@@ -30,25 +36,85 @@ TextureImporter:
   maxTextureSize: 2048
   textureSettings:
     filterMode: -1
-    aniso: -1
+    aniso: 16
     mipBias: -1
-    wrapMode: -1
-  nPOTScale: 1
+    wrapMode: 1
+  nPOTScale: 0
   lightmap: 0
   rGBM: 0
   compressionQuality: 50
-  spriteMode: 0
+  spriteMode: 2
   spriteExtrude: 1
   spriteMeshType: 1
   alignment: 0
   spritePivot: {x: .5, y: .5}
   spriteBorder: {x: 0, y: 0, z: 0, w: 0}
   spritePixelsToUnits: 100
-  alphaIsTransparency: 0
-  textureType: -1
+  alphaIsTransparency: 1
+  textureType: 8
   buildTargetSettings: []
   spriteSheet:
-    sprites: []
+    sprites:
+    - name: setting_menu_0
+      rect:
+        serializedVersion: 2
+        x: 34
+        y: 396
+        width: 434
+        height: 90
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: setting_menu_1
+      rect:
+        serializedVersion: 2
+        x: 91
+        y: 244
+        width: 128
+        height: 100
+      alignment: 0
+      pivot: {x: .5, y: .5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: setting_menu_5
+      rect:
+        serializedVersion: 2
+        x: 270
+        y: 244
+        width: 138
+        height: 100
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: setting_menu_6
+      rect:
+        serializedVersion: 2
+        x: 41
+        y: 106
+        width: 430
+        height: 89
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: setting_menu_7
+      rect:
+        serializedVersion: 2
+        x: 46
+        y: 20
+        width: 414
+        height: 45
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: setting_menu_8
+      rect:
+        serializedVersion: 2
+        x: 464
+        y: 24
+        width: 40
+        height: 40
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
   spritePackingTag: 
   userData: 
   assetBundleName: 

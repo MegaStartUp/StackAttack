@@ -50,7 +50,7 @@ public class IUControl_Release :IControl
     public bool Get_Catch()
     {
 #if UNITY_STANDALONE_WIN
-        return Input.GetKeyDown(KeyCode.E);
+        return Input.GetMouseButtonDown(0) || Input.GetKeyDown(KeyCode.E);
 #endif
     }
     public void Get_Pause()
