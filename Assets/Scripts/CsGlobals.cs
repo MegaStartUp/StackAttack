@@ -66,6 +66,7 @@ public class CsGlobals : MonoBehaviour
     public int move_horiz_button;
     public int move_vertic_button;
     public float acacceleration_coef;
+    private float _aclrtn_p;
     public bool jump_button;
     public bool catch_button;
     public bool wait_state;
@@ -195,7 +196,7 @@ public class CsGlobals : MonoBehaviour
     void game()
     {
         jump_button = IContr.Get_Jump();
-        catch_button = IContr.Get_Catch();
+        catch_button = IContr.Get_Feach();
         move_vertic_button = IContr.Vertical_Axis();
         move_horiz_button = IContr.Horizontal_Axis();
         IContr.Get_Pause();
@@ -215,12 +216,14 @@ public class CsGlobals : MonoBehaviour
         else
             unpause_game();
         if (wait_state)
-            acacceleration_coef = 0;
+            _aclrtn_p = 0;
         else
-            if(acacceleration_coef<1.0f)
-                acacceleration_coef+=Time.deltaTime*5;
+            if ((_aclrtn_p < 1.0f) && !jump_button)
+                //&& !jump_button
+                _aclrtn_p += Time.deltaTime * 5;
             else
-                acacceleration_coef=1.0f;
+                _aclrtn_p = 1.0f;
+        acacceleration_coef = _aclrtn_p * _aclrtn_p * _aclrtn_p * _aclrtn_p;
 
     }
     public void Overwrite_param()

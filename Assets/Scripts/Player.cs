@@ -15,8 +15,30 @@ public class Player : MonoBehaviour
     private bool Jump1 = false;
     private CsGlobals General_Processor;
     private Transform Load;
-    private float higt_load=1.1f;
+    private float higt_load = 0.9f;
     private bool catch_l_f = false;
+    private bool Catch_l_f
+    {
+        set
+        {
+            catch_l_f = value;
+            if (value)
+            {
+                transform.GetComponent<CircleCollider2D>().radius = 0.4f;
+                transform.GetComponent<CircleCollider2D>().offset = new Vector2(0, -0.1f);
+            }
+            else
+            {
+                transform.GetComponent<CircleCollider2D>().radius = 0.5f;
+                transform.GetComponent<CircleCollider2D>().offset = Vector2.zero;
+            }
+
+        }
+        get
+        {
+            return catch_l_f;
+         }
+    }
     private float jump_time = 0.1f;
     private float jump_time_dif = 0.0f;
 
@@ -73,16 +95,18 @@ public class Player : MonoBehaviour
     {
         if (Jump)
         {
-            RB2D.AddForce(new Vector2(moving_impact * General_Processor.move_horiz_button* 1f* Time.deltaTime, 0), ForceMode2D.Impulse);
+            //RB2D.MovePosition(RB2D.position + new Vector2(moving_impact * General_Processor.move_horiz_button * General_Processor.acacceleration_coef * Time.deltaTime, 0));
+            RB2D.AddForce(new Vector2(moving_impact * General_Processor.move_horiz_button * General_Processor.acacceleration_coef * Time.deltaTime, 0), ForceMode2D.Impulse);
             if (General_Processor.wait_state && !jump_active) RB2D.velocity = -RB2D.velocity;
             else RB2D.drag = 3;
         }
         else
-            RB2D.AddForce(new Vector2(moving_impact * General_Processor.move_horiz_button *1f * Time.deltaTime * 0.2f, 0), ForceMode2D.Impulse);
-
+            RB2D.AddForce(new Vector2(moving_impact * General_Processor.move_horiz_button * General_Processor.acacceleration_coef * Time.deltaTime * 0.2f, 0), ForceMode2D.Impulse);
+            //RB2D.MovePosition(RB2D.position + new Vector2(moving_impact * General_Processor.move_horiz_button * General_Processor.acacceleration_coef * Time.deltaTime * 0.2f, 0));
         if (Jump && (General_Processor.jump_button))
         {
             RB2D.AddForce(new Vector2(0, jumping_impact * jumping_impact_multipl), ForceMode2D.Impulse);
+            //RB2D.MovePosition(RB2D.position + new Vector2(0, jumping_impact * jumping_impact_multipl * Time.deltaTime));
             Jump1=Jump = false;
             jump_time_dif = 0;
         }
@@ -126,7 +150,7 @@ public class Player : MonoBehaviour
             _line.SetPosition(0, transform.position);
             _line.SetPosition(1, new Vector2(transform.position.x + General_Processor.interact_dist*General_Processor.orient_vect.x, transform.position.y + General_Processor.interact_dist * General_Processor.orient_vect.y));
             _line.SetWidth(0.05f, 0.05f);*/
-            if ((hit.collider != null) && !catch_l_f)
+            if ((hit.collider != null) && !Catch_l_f)
             {
                 if (Vector2.up != General_Processor.orient_vect)
                 {
@@ -135,7 +159,7 @@ public class Player : MonoBehaviour
                     {
                         Load = hit.transform;
                         Load.parent = this.transform;
-                        catch_l_f = true;
+                        Catch_l_f = true;
                         jumping_impact_multipl =2f;
                     }
                 }
@@ -143,13 +167,13 @@ public class Player : MonoBehaviour
                 {
                     Load = hit.transform;
                     Load.parent = this.transform;
-                    catch_l_f = true;
+                    Catch_l_f = true;
                 }
 
             }
             else
             {
-                catch_l_f = false;
+                Catch_l_f = false;
                 hit = Physics2D.Raycast(transform.position, General_Processor.orient_vect, General_Processor.interact_dist+0.1f, LayerMask.GetMask("Load", "Border"));
                 if (Load != null)
                 {
@@ -163,18 +187,22 @@ public class Player : MonoBehaviour
                 }
             } 
         }
-        if (catch_l_f)
+        if (Catch_l_f)
         {
             if (Load != null)
+            {
                 Load.position = new Vector2(this.transform.position.x, this.transform.position.y + higt_load);
+            }
             else
-                catch_l_f = false;
+            {
+                Catch_l_f = false;
+            }
         }
             
     }
     void anim_contrl()
     {
-        if(catch_l_f)//box is load
+        if(Catch_l_f)//box is load
         {
             if(!Jump)//Player jump
             {

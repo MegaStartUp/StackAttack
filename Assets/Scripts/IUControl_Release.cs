@@ -47,7 +47,7 @@ public class IUControl_Release :IControl
         return 0 != Input.GetAxis("Jump");
 #endif
     }
-    public bool Get_Catch()
+    public bool Get_Feach()
     {
 #if UNITY_STANDALONE_WIN
         return Input.GetMouseButtonDown(0) || Input.GetKeyDown(KeyCode.E);

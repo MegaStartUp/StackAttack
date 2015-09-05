@@ -3,20 +3,25 @@ using System.Collections;
 
 public class Load_ray : MonoBehaviour
 {
+    ~Load_ray()
+    {
+        if (General_Processor!=null)
+            General_Processor.score++;
+    }
     public bool find = true;
     private float min_depth;
     private float max_depth;
     private float sector_width;
     private float sector_high;
-    private Animator anim; 
-    GameObject General_Processor;
+    private Animator anim;
+    CsGlobals General_Processor;
     //GameObject ray_line;//debag
     // Use this for initialization
     void Start()
     {
-        General_Processor = GameObject.Find("General_Processor");
-        sector_width = General_Processor.transform.GetComponent<CsGlobals>().sector_width;
-        sector_high = General_Processor.transform.GetComponent<CsGlobals>().sector_high;
+        General_Processor = GameObject.Find("General_Processor").GetComponent<CsGlobals>();
+        sector_width = General_Processor.sector_width;
+        sector_high = General_Processor.sector_high;
 
         min_depth = this.transform.localScale.x / 1.42f;
         max_depth = min_depth * 1.1f;
