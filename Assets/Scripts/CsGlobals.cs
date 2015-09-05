@@ -97,7 +97,10 @@ public class CsGlobals : MonoBehaviour
         }
         set
         {
-            Top_Score = value;
+            if (T_Count != null)
+                T_Count.score = Top_Score = value;
+            else
+                Top_Score = value;
         }
     }
     public int last_score
@@ -108,7 +111,10 @@ public class CsGlobals : MonoBehaviour
         }
         set
         {
-            Last_Score = value;
+            if (L_Count != null)
+                L_Count.score = Last_Score = value;
+            else
+                Last_Score = value;
         }
     }
     public bool GmOv = false;
@@ -139,6 +145,8 @@ public class CsGlobals : MonoBehaviour
         Im_G_O = GameObject.Find("Im_GameOver");
         BackGr_and_Menu = GameObject.Find("Backgr_and_Menu");
         Count = GameObject.Find("Counter").GetComponent<Indicator>();
+        L_Count = GameObject.Find("L_Counter").GetComponent<Indicator>();
+        T_Count = GameObject.Find("T_Counter").GetComponent<Indicator>();
         Im_G_O.SetActive(false);
         Overwrite_param();
         IContr=new IUControl_Release();

@@ -32,7 +32,6 @@ public class Indicator : MonoBehaviour
     void Parser()
     {
         first.sprite = sprite[(int)(score % 10)];
-        Debug.Log((int)(score % 10));
         second.sprite = sprite[(int)((score / 10) % 10)];
         third.sprite = sprite[(int)((score / 100) % 10)];
         fourth.sprite = sprite[(int)((score / 1000) % 10)];
