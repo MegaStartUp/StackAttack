@@ -5,8 +5,11 @@ public class Load_ray : MonoBehaviour
 {
     ~Load_ray()
     {
-        if (General_Processor!=null)
+        if (General_Processor != null)
+        {
             General_Processor.score++;
+            General_Processor.full_score++;
+        }
     }
     public bool find = true;
     private float min_depth;
@@ -66,12 +69,14 @@ public class Load_ray : MonoBehaviour
         int coord_x = (int)(this.transform.position.x / sector_width);
         int coord_y = (int)(this.transform.position.y / sector_high);
         GameObject GObj = GameObject.Find("Sectors_net/" + coord_x + " - " + coord_y);
-
-        this.transform.parent = GObj.transform;
-        this.transform.GetComponent<Rigidbody2D>().isKinematic = true;
-        this.transform.rotation = Quaternion.identity;
-        this.transform.position = GObj.transform.position;
-        //Debug.Log(coord_x + " - " + coord_y + " - Fixed_obj ");//debag
+        if (GObj != null)
+        {
+            this.transform.parent = GObj.transform;
+            this.transform.GetComponent<Rigidbody2D>().isKinematic = true;
+            this.transform.rotation = Quaternion.identity;
+            this.transform.position = GObj.transform.position;
+            //Debug.Log(coord_x + " - " + coord_y + " - Fixed_obj ");//debag
+        }
     }
     //exclusion obj in net
     void unFixed_obj()

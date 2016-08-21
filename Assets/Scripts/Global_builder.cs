@@ -7,26 +7,26 @@ public class Global_builder : MonoBehaviour
     // Use this for initialization
     void Start()
     {
-        GameObject General_Processor = GameObject.Find("General_Processor");
+        CsGlobals Globals = GameObject.Find("General_Processor").GetComponent<CsGlobals>();
 
         //Init var
-        int sector_width_count = General_Processor.transform.GetComponent<CsGlobals>().sector_width_count;
-        int sector_high_count = General_Processor.transform.GetComponent<CsGlobals>().sector_high_count;
+        int sector_width_count = Globals.sector_width_count;
+        int sector_high_count = Globals.sector_high_count;
 
-        float sector_width = General_Processor.transform.GetComponent<CsGlobals>().sector_width;
-        float sector_high = General_Processor.transform.GetComponent<CsGlobals>().sector_high;
+        float sector_width = Globals.sector_width;
+        float sector_high = Globals.sector_high;
 
-        float high = General_Processor.transform.GetComponent<CsGlobals>().high;
-        float width = General_Processor.transform.GetComponent<CsGlobals>().width;
-        float ray_coord_x = General_Processor.transform.GetComponent<CsGlobals>().ray_coord_x;
-        float ray_coord_y = General_Processor.transform.GetComponent<CsGlobals>().ray_coord_y;
+        float high = Globals.high;
+        float width = Globals.width;
+        float ray_coord_x = Globals.ray_coord_x;
+        float ray_coord_y = Globals.ray_coord_y;
 
         //Init gameobject templates 
-        GameObject sector_pref = General_Processor.transform.GetComponent<CsGlobals>().sector_pref;
-        GameObject destr_pref = General_Processor.transform.GetComponent<CsGlobals>().destr_pref;
-        GameObject GOR_pref = General_Processor.transform.GetComponent<CsGlobals>().GOR_pref;
-        GameObject border_pref = General_Processor.transform.GetComponent<CsGlobals>().border_pref;
-        GameObject player_pref = General_Processor.transform.GetComponent<CsGlobals>().player_pref;
+        GameObject sector_pref = Globals.sector_pref;
+        GameObject destr_pref = Globals.destr_pref;
+        GameObject GOR_pref = Globals.GOR_pref;
+        GameObject border_pref = Globals.border_pref;
+        GameObject player_pref = Globals.player_pref;
         //Gameobject var 
         GameObject sectors_net;
         GameObject destr_ray_net;
@@ -52,6 +52,12 @@ public class Global_builder : MonoBehaviour
         GameObject player = Instantiate(player_pref, new Vector2(width / 2, sector_high), Quaternion.identity) as GameObject;
         player.name = "Player";
 
+        GameObject[] Sec_Canv = GameObject.FindGameObjectsWithTag("Secotr_Canvas");
+        foreach (GameObject S_C in Sec_Canv)
+        {
+            S_C.SetActive(false);
+        }
+        Globals.Sector_Canvases = Sec_Canv;
     }
     //Function build rays net and sectors net 
     void create_sectors_rays(Transform s_net, GameObject sector_pref, Transform d_net, GameObject destr_pref, float ray_coord_x, Transform g_net, GameObject GOR_pref, float ray_coord_y, Vector2 vect_scale, Vector2 vect_count)
@@ -77,6 +83,7 @@ public class Global_builder : MonoBehaviour
                 GameObject sector = Instantiate(sector_pref, new Vector2(coord_x, coord_y), Quaternion.identity) as GameObject;
                 sector.name = i+" - "+ j;
                 sector.transform.parent = s_net;
+                if ((i == 0) && (j == 0)) sector.AddComponent<Zero_Bag_Sector>();
                 coord_y += vect_scale.y;
             }
             coord_x += vect_scale.x;

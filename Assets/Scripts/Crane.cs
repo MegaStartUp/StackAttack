@@ -79,13 +79,16 @@ public class Crane : MonoBehaviour
             dif_time += Time.deltaTime;
             if (dif_time >= 0)
             {
-                GameObject load_obj = transform.Find("Load").gameObject;
-                load_obj.transform.GetComponent<Rigidbody2D>().gravityScale = gravity_for_load;
-                load_obj.transform.GetComponent<Rigidbody2D>().constraints = RigidbodyConstraints2D.FreezePositionX;
-                load_obj.transform.GetComponent<Collider2D>().enabled = true;
-                load_obj.transform.GetComponent<Load_ray>().enabled = true;
-                //load_obj.transform.position = new Vector2(unload_point, high_crane);
-                load_obj.transform.parent = null;
+                if (transform.Find("Load") != null)
+                {
+                    GameObject load_obj = transform.Find("Load").gameObject;
+                    load_obj.transform.GetComponent<Rigidbody2D>().gravityScale = gravity_for_load;
+                    load_obj.transform.GetComponent<Rigidbody2D>().constraints = RigidbodyConstraints2D.FreezePositionX;
+                    load_obj.transform.GetComponent<Collider2D>().enabled = true;
+                    load_obj.transform.GetComponent<Load_ray>().enabled = true;
+                    //load_obj.transform.position = new Vector2(unload_point, high_crane);
+                    load_obj.transform.parent = null;
+                }
             }
         }
         else
