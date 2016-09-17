@@ -1,0 +1,12 @@
+﻿<Properties StartupItem="StackAttack.CSharp.csproj">
+  <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
+  <MonoDevelop.Ide.Workbench ActiveDocument="Assets\new_menu\scripts\respaun_obects.cs">
+    <Files>
+      <File FileName="Assets\new_menu\scripts\respaun_obects.cs" Line="5" Column="4" />
+    </Files>
+  </MonoDevelop.Ide.Workbench>
+  <MonoDevelop.Ide.DebuggingService.Breakpoints>
+    <BreakpointStore />
+  </MonoDevelop.Ide.DebuggingService.Breakpoints>
+  <MonoDevelop.Ide.DebuggingService.PinnedWatches />
+</Properties>
